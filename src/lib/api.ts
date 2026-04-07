@@ -9,7 +9,14 @@ import {
   UserRole,
 } from '@/types';
 
-const API_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? 'https://dakar-scholarship-hub-backen.onrender.com';
+const API_PREFIX = '/api/v1';
+
+function normalizeApiUrl(url?: string) {
+  const baseUrl = (url ?? 'https://dakar-scholarship-hub-backen.onrender.com').replace(/\/+$/, '');
+  return baseUrl.endsWith(API_PREFIX) ? baseUrl : `${baseUrl}${API_PREFIX}`;
+}
+
+const API_URL = normalizeApiUrl(import.meta.env.VITE_API_URL as string | undefined);
 const ACCESS_TOKEN_KEY = 'dakar_scholarship_access_token';
 const REFRESH_TOKEN_KEY = 'dakar_scholarship_refresh_token';
 const USER_KEY = 'dakar_scholarship_user';
