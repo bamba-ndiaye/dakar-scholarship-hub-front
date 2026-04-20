@@ -71,3 +71,16 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## CI configuration
+
+This repository now includes a GitHub Actions workflow at `.github/workflows/ci.yml`.
+
+The pipeline runs on each push and pull request and executes:
+
+- `npm ci`
+- `npm run lint`
+- `npm run test`
+- `npm run build`
+
+This provides an automated quality gate before merging changes.
